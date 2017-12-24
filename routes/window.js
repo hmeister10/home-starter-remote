@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var windowModel = require('../models/window');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,14 +8,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
-  res.send({
-      "speech": "Found 4 windows",
-      "displayText": "Found 4 windows",
-      "data": {},
-      "contextOut": [],
-      "source": "heroku"
-  });
+  windowModel(req.body).then((data) => {
+    res.send(data);
+  }).catch((err) => {
+    console.log('ERROR OCCURRED WHILE MANAGING WINDOWS');
+    res.send(err);
+  })
 });
 
 
