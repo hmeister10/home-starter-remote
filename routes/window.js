@@ -6,5 +6,9 @@ router.get('/', function(req, res, next) {
   res.send('Found 4 windows connected');
 });
 
+router.post('/', function(req, res, next) {
+  res.send('Found 4 windows connected');
+});
+
 
 module.exports = router;
