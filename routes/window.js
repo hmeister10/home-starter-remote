@@ -7,7 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  res.send('Found 4 windows connected');
+  console.log(req.body);
+  res.send({
+      "speech": "Found 4 windows",
+      "displayText": "Found 4 windows",
+      "data": {},
+      "contextOut": [],
+      "source": "heroku"
+  });
 });
 
 
