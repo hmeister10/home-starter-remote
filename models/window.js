@@ -38,7 +38,9 @@ const model = (data) => {
       default: 
         operation = '';
     }
-
+    
+    console.log('PERFORMING OPERATION::', operation);
+    
     if(operation !== ''){
       windowController[operation]('all').then((response) => {
         resolve(createResponse(response));

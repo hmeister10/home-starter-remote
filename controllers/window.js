@@ -1,8 +1,8 @@
 module.exports = {
-  open: () => {
-    return 'opening 2 windows';
+  open: (which) => {
+    return 'opening ' +  which + ' windows';
   },
-  close: () => {
-    return 'closing 2 windows';
+  close: (which) => {
+    return 'closing ' +  which + ' windows';
   },
 };
