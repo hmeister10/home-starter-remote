@@ -1,4 +1,5 @@
 let windowController = require('../controllers/window');
+let _ = require('lodash');
 
 const createErrorResponse = (errorCode) => {
   let data = 'Oops something went wrong';
@@ -28,9 +29,10 @@ const createResponse = (data) => {
 
 const model = (data) => {
   return new Promise((resolve, reject) => {
+    console.log('ENTERED WINDOW MODEL');
     let operation = _.get(data, 'result.parameters.states');
     operation = !!operation ? String(operation).toLowerCase() : '';
-  
+
     switch(operation) {
       case 'open':
       case 'close':
@@ -43,6 +45,7 @@ const model = (data) => {
     
     if(operation !== ''){
       windowController[operation]('all').then((response) => {
+        console.log('COMPLETED OPERATION WITH RESPONSE', response);
         resolve(createResponse(response));
       })
     } else {

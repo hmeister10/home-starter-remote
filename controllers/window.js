@@ -1,8 +1,13 @@
 module.exports = {
   open: (which) => {
-    return 'opening ' +  which + ' windows';
+    return new Promise((resolve, reject) => {
+      resolve('opening ' +  which + ' windows');
+    })
+    
   },
   close: (which) => {
-    return 'closing ' +  which + ' windows';
+    return new Promise((resolve, reject) => {
+      resolve('closing ' +  which + ' windows');
+    })
   },
 };
