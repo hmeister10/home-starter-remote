@@ -1,16 +1,16 @@
+var mqtt = require('mqtt')
+var client  = mqtt.connect('mqtt://m14.cloudmqtt.com', {
+  username: "fyrroels",
+  password: "1H7UyvEDvfOB",
+  port: 17502,
+
+});
 
 init = () => {
-  var mqtt = require('mqtt')
-  var client  = mqtt.connect('mqtt://m14.cloudmqtt.com', {
-    username: "fyrroels",
-    password: "1H7UyvEDvfOB",
-    port: 17502,
   
-  })
    
   client.on('connect', function () {
     client.subscribe('test1')
-    client.publish('test/1', 'open windows')
   })
    
   client.on('message', function (topic, message) {
@@ -20,5 +20,16 @@ init = () => {
   })
 }
 
-module.exports = {init};
+
+open = () => {
+  init();
+  client.publish('test/1', 'open windows')  
+}
+
+close = () => {
+  init();
+  client.publish('test/2', 'close windows')  
+}
+
+module.exports = {open, close};
 
