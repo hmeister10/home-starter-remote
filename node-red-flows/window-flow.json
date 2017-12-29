@@ -1,0 +1,311 @@
+[
+    {
+        "id": "2108320a.04928e",
+        "type": "tab",
+        "label": "window flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5a1b5b38.332b64",
+        "type": "debug",
+        "z": "2108320a.04928e",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 310,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e1841597.266448",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "12",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 500,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3f9552d2.84bcde",
+        "type": "mqtt out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "topic": "complete/start-motor-CW",
+        "qos": "",
+        "retain": "",
+        "broker": "943d5453.4f6e18",
+        "x": 550,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9bb59b57.347448",
+        "type": "mqtt in",
+        "z": "2108320a.04928e",
+        "name": "",
+        "topic": "hub_himanshu/window/#",
+        "qos": "0",
+        "broker": "943d5453.4f6e18",
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "679ce606.391248",
+                "9630edce.64b65"
+            ]
+        ]
+    },
+    {
+        "id": "1f342e87.3f2451",
+        "type": "debug",
+        "z": "2108320a.04928e",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 510,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ac036cc3.92ec9",
+        "type": "delay",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "eb17fc5e.514d3",
+                "fec0c1c4.bb35",
+                "b71642a8.df206",
+                "3ba12d9e.29d842"
+            ]
+        ]
+    },
+    {
+        "id": "eb17fc5e.514d3",
+        "type": "debug",
+        "z": "2108320a.04928e",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 790,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fec0c1c4.bb35",
+        "type": "mqtt out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "topic": "complete/stop-motor",
+        "qos": "",
+        "retain": "",
+        "broker": "943d5453.4f6e18",
+        "x": 820,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b71642a8.df206",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "12",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 780,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ab0e2d01.bddc4",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "16",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 500,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "679ce606.391248",
+        "type": "switch",
+        "z": "2108320a.04928e",
+        "name": "control",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "open",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "close",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "1f342e87.3f2451",
+                "3f9552d2.84bcde",
+                "e1841597.266448",
+                "ab0e2d01.bddc4",
+                "ac036cc3.92ec9"
+            ],
+            [
+                "5a1b5b38.332b64",
+                "c3cd7162.de16e",
+                "9af5a632.7e4958",
+                "c228ffc7.2c9f6",
+                "ac036cc3.92ec9"
+            ]
+        ]
+    },
+    {
+        "id": "3ba12d9e.29d842",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "16",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 780,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c3cd7162.de16e",
+        "type": "mqtt out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "topic": "complete/start-motor-CCW",
+        "qos": "",
+        "retain": "",
+        "broker": "943d5453.4f6e18",
+        "x": 360,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9af5a632.7e4958",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "12",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 300,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "c228ffc7.2c9f6",
+        "type": "rpi-gpio out",
+        "z": "2108320a.04928e",
+        "name": "",
+        "pin": "16",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 300,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "56d39475.910a5c",
+        "type": "comment",
+        "z": "2108320a.04928e",
+        "name": "STOP MOTOR FLOW",
+        "info": "",
+        "x": 520,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "258e7ff0.647d8",
+        "type": "comment",
+        "z": "2108320a.04928e",
+        "name": "CLOSE FLOW",
+        "info": "",
+        "x": 310,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "15c3256a.156d3b",
+        "type": "comment",
+        "z": "2108320a.04928e",
+        "name": "OPEN FLOW",
+        "info": "",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9630edce.64b65",
+        "type": "debug",
+        "z": "2108320a.04928e",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 450,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "943d5453.4f6e18",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "m14.cloudmqtt.com",
+        "port": "17502",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]
