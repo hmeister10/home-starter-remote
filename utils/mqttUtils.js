@@ -21,15 +21,9 @@ init = () => {
 }
 
 
-open = () => {
-  init();
-  client.publish('test/1', 'open windows')  
+publish = (hub, component, action) => {
+  client.publish(`${hub}/${component}/control`, action);
 }
 
-close = () => {
-  init();
-  client.publish('test/2', 'close windows')  
-}
-
-module.exports = {open, close};
+module.exports = {init, publish};
 

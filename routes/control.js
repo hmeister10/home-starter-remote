@@ -12,12 +12,10 @@ const manageWindows = (req, res) => {
   })
 }
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  manageWindows(req, res);
-});
-
 router.post('/', function(req, res, next) {
+  console.log('--- --- --- --- ---');
+  console.log(req.body);
+  console.log('--- --- --- --- ---');
   manageWindows(req, res);
 });
 

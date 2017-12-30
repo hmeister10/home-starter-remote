@@ -1,16 +1,16 @@
 mqttUtils = require('../utils/mqttUtils');
+userUtils = require('../utils/userUtils');
+
 module.exports = {
-  open: (which) => {
+  control: (which, action) => {
     return new Promise((resolve, reject) => {
-      mqttUtils.open();
-      resolve('opening ' +  which + ' windows');
+      userUtils.get().then((data) => {
+        console.log(data);
+        mqttUtils.publish(data.hub, 'window', action);
+        resolve(`${action}ing ${which} windows`);
+      }).catch(() => {
+        reject('failed to get user data');
+      });
     })
-    
-  },
-  close: (which) => {
-    return new Promise((resolve, reject) => {
-      mqttUtils.close();
-      resolve('closing ' +  which + ' windows');
-    })
-  },
+  }
 };

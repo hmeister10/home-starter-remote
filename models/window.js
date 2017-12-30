@@ -44,10 +44,12 @@ const model = (data) => {
     console.log('PERFORMING OPERATION::', operation);
     
     if(operation !== ''){
-      windowController[operation]('all').then((response) => {
+      windowController.control('all', operation).then((response) => {
         console.log('COMPLETED OPERATION WITH RESPONSE', response);
         resolve(createResponse(response));
-      })
+      }).catch(() => {
+        reject(createErrorResponse(500));
+      });
     } else {
       reject(createErrorResponse(400));
     }
